@@ -60,7 +60,7 @@ public class AdminDao extends GenericDao<Admin> {
     }
     @Transactional
 	public Admin insertUser(Admin user) {
-        user.setPassword("e10adc3949ba59abbe56e057f20f883e");
+        user.setPassword("123456");
         persist(user);
         refresh(user);
         return user;

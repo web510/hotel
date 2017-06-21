@@ -51,9 +51,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div id="sb-search" class="sb-search">
 						<form>
 							<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
-							<input class="sb-search-submit" type="submit" value="">
+							<input class="sb-search-submit" type="button" value="">
 							<span class="sb-icon-search"> </span>
-							</form>
+						</form>
 					</div>
 				</div>
 					<div class="clearfix"> </div>
@@ -92,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input id="password" type="password">
 						</div>
 						<a class="forgot" href="#">Forgot Your Password?</a>
-						<input id="signIn" type="submit" value="Sign In">
+						<input id="signIn" type="button" value="Sign In">
 					</form>
 			   </div>	
 				<div class="clearfix"> </div>
@@ -162,11 +162,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			},function (res) {
 			    //TODO {status,message}
 			    if(res.status == 1){
-
+					alert("登录成功");
 				} else {
-
+					alert(res.message);
 				}
-            },'json');
+            });
         })
     })(jQuery);
 </script>

@@ -14,10 +14,20 @@ import javax.transaction.Transactional;
 @Controller
 @Transactional
 @RequestMapping("admin")
-public class AdminController {
+public class AdminPostController {
 	@Autowired
 	private AdminService userService;
 
-
+    @ResponseBody
+	@RequestMapping(value="/signInPost",produces = "application/json; charset=utf-8")
+	public String loginPost(String username, String password, HttpSession session)  {
+		Admin user = userService.getUser(username, password);
+		if (user != null) {
+			session.setAttribute("user", user);
+			return JsonUtils.writeStatus(1, user.getClass().toString());
+		} else {
+			return JsonUtils.writeStatus(0,"用户名或密码错误");
+		}
+	}
 }
 
