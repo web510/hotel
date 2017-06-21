@@ -68,4 +68,11 @@ public class OrderDao extends GenericDao<Order_> {
         }
 	    else throw new PostException("该订单已缴过费！");
     }
+    @Transactional
+    public void checkIn(int order_id, int roomNumberId) {
+	    Order_ order = find(order_id);
+	    order.setRoomNumberId(roomNumberId);
+	    order.setStatus("已入住");
+        flush();
+    }
 }

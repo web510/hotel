@@ -1021,7 +1021,7 @@ select.arrival{
 .form-control{
 	width:10%;
 }
-.booking-form input[type="submit"],.booking-form input[type="reset"] {
+.booking-form input[type="button"],.booking-form input[type="reset"] {
 	margin-top: 25px;
 	font-family: 'Open Sans', sans-serif;
 	cursor: pointer;

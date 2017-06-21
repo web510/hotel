@@ -92,7 +92,6 @@ public class UserControllerLoginTest {
 		MvcResult result = resultActions.andReturn();
 		session = (MockHttpSession) result.getRequest().getSession();
 	}
-    @Test
 	public void inMoney() throws Exception {
 //	    {"total":2,"rows":[{"role":"teacher","id":2,"userName":"张猛治4","title":"教授","introduction":"我就是张猛治，哈哈"},{"role":"teacher","phone":"15545016598","id":3,"userName":"张猛治5","title":"教授","introduction":"我就是张猛治，哈哈"}]}
 		RequestBuilder builder = MockMvcRequestBuilders
@@ -103,4 +102,26 @@ public class UserControllerLoginTest {
 		MvcResult result = resultActions.andReturn();
 		session = (MockHttpSession) result.getRequest().getSession();
 	}
+    public void roomNumberListCanSelect() throws Exception {
+//	    {"total":2,"rows":[{"role":"teacher","id":2,"userName":"张猛治4","title":"教授","introduction":"我就是张猛治，哈哈"},{"role":"teacher","phone":"15545016598","id":3,"userName":"张猛治5","title":"教授","introduction":"我就是张猛治，哈哈"}]}
+        RequestBuilder builder = MockMvcRequestBuilders
+                .post("/admin/roomNumberListCanSelect")
+                .param("order_id", "1")
+                .session(session);
+        ResultActions resultActions = mockMvc.perform(builder).andDo(MockMvcResultHandlers.print());
+        MvcResult result = resultActions.andReturn();
+        session = (MockHttpSession) result.getRequest().getSession();
+    }
+    @Test
+    public void checkIn() throws Exception {
+//	    {"total":2,"rows":[{"role":"teacher","id":2,"userName":"张猛治4","title":"教授","introduction":"我就是张猛治，哈哈"},{"role":"teacher","phone":"15545016598","id":3,"userName":"张猛治5","title":"教授","introduction":"我就是张猛治，哈哈"}]}
+        RequestBuilder builder = MockMvcRequestBuilders
+                .post("/admin/checkIn")
+                .param("order_id", "1")
+                .param("roomNumberId", "5")
+                .session(session);
+        ResultActions resultActions = mockMvc.perform(builder).andDo(MockMvcResultHandlers.print());
+        MvcResult result = resultActions.andReturn();
+        session = (MockHttpSession) result.getRequest().getSession();
+    }
 }
