@@ -48,6 +48,19 @@ public class UserControllerLoginTest {
 	}
 
 	@Test
+	public void queryOrders() throws Exception {
+//      {"message":"添加成功","status":1}  {"message":"添加失败，用户已存在！","status":0}
+		RequestBuilder builder = MockMvcRequestBuilders
+				.post("/SOA/queryOrders")
+				.param("sfzh", "321322199512165417")
+				.param("name", "张猛治")
+				.param("phone", "15545016598")
+				.session(session);
+		ResultActions resultActions = mockMvc.perform(builder).andDo(MockMvcResultHandlers.print());
+		MvcResult result = resultActions.andReturn();
+		session = (MockHttpSession) result.getRequest().getSession();
+	}
+
     public void addUser() throws Exception {
 //      {"message":"添加成功","status":1}  {"message":"添加失败，用户已存在！","status":0}
         RequestBuilder builder = MockMvcRequestBuilders
