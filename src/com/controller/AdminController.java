@@ -1,24 +1,33 @@
 package com.controller;
 
-import com.service.UserService;
+import com.entity.Admin;
+import com.service.AdminService;
+import com.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by libby on 2017/6/3.
- */
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+
 @Controller
+@Transactional
+@RequestMapping("admin")
 public class AdminController {
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private AdminService userService;
 
-
-    @GetMapping("/admin")
-    public String root(Model model) {
-        model.addAttribute("title", "管理员");
-        System.out.println("管理员");
-        return "admin/admin";
-    }
+    @ResponseBody
+	@RequestMapping(value="/loginPost",produces = "application/json; charset=utf-8")
+	public String loginPost(String userName, String password, HttpSession session)  {
+		Admin user = userService.getUser(userName, password);
+		if (user != null) {
+			session.setAttribute("user", user);
+			return JsonUtils.writeStatus(1, user.getClass().toString());
+		} else {
+			return JsonUtils.writeStatus(0,"用户名或密码错误");
+		}
+	}
 }
+
