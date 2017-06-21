@@ -51,9 +51,9 @@ public class SOAController {
     //查询订单
     public String queryOrders(String sfzh, String name, String phone) {
         List<Order_> list = orderDao.queryOrders(sfzh,name,phone);
-        JSONObject obj = new JSONObject();
         List<JSONObject> res = new ArrayList<>();
         for(Order_ order : list){
+            JSONObject obj = new JSONObject();
             obj.put("id",order.getId());
             obj.put("inDate",order.getInDate());
             obj.put("name",order.getName());
