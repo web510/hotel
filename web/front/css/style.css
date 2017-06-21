@@ -1021,7 +1021,7 @@ select.arrival{
 .form-control{
 	width:10%;
 }
-.booking-form input[type="submit"],.booking-form input[type="reset"] {
+.booking-form input[type="submit"],.booking-form input[type="reset"],.booking-form input[type="button"] {
 	margin-top: 25px;
 	font-family: 'Open Sans', sans-serif;
 	cursor: pointer;
@@ -1042,7 +1042,7 @@ select.arrival{
 	-moz-border-radius: 2px;
 	-o-border-radius: 2px;
 }
-.booking-form input[type="submit"]:hover,.booking-form input[type="reset"]:hover  {
+.booking-form input[type="submit"]:hover,.booking-form input[type="reset"]:hover,.booking-form input[type="button"]:hover  {
 	background: #553A99;
 	border: 1px solid #553A99;
 }

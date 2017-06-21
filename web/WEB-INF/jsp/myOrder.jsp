@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE HTML>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE HTML><!DOCTYPE HTML>
 <html>
 <head>
-<title>登陆</title>
+<title>Details</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Motel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -53,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
 							<input class="sb-search-submit" type="button" value="">
 							<span class="sb-icon-search"> </span>
-						</form>
+							</form>
 					</div>
 				</div>
 					<div class="clearfix"> </div>
@@ -68,15 +67,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			</div>
 		</div>
-	</div>
+	</div>		
 		<!-- banner -->
-
-<div class="myOrder-page">
+<!-- details -->
+	<div class="details">
 		<div class="container">
+			<h2>订单查询</h2>
+			<div class="booking-form">
+				 <div class="col-md-6">
+					<form>
+						<h5>身份证号</h5>
+						<input id="sfzh" type="text" value="">
+						<h5>姓名</h5>
+						<input id="name" type="text" value="">
+						<h5>电话</h5>
+						<input id="phone" type="text" value="">
+						<input id="submit" type="button" value="确认">
+						<input type="reset" value="重置">
+					</form>
+				</div>
+			 </div>
 
-		</div>
+			<div id="orderInfo" style="display: none">
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th>#</th>
+						<th>姓名</th>
+						<th>身份证</th>
+						<th>入住日期</th>
+						<th>房型</th>
+						<th>状态</th>
+						<th>操作</th>
+
+					</tr>
+					</thead>
+					<tbody>
+					<%--<tr>--%>
+						<%--<td>1</td>--%>
+						<%--<td>Mark</td>--%>
+						<%--<td>Otto</td>--%>
+						<%--<td>@mdo</td>--%>
+						<%--<td>Otto</td>--%>
+						<%--<td>@mdo</td>--%>
+					<%--</tr>--%>
+					</tbody>
+				</table>
+			</div>
+
+			</div>
+		 </div>
 	</div>
-	<!-- footer -->
+<!-- details -->
+<!-- footer -->
 	<div class="footer">
 		<div class="container">
 			<div class="col-md-2 deco">
@@ -126,25 +169,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	<!-- footer -->
-</body>
 
 <script>
 	(function ($) {
-	    $('#signIn').click(function () {
-	        var username = $('#username').val(),
-	            password = $('#password').val();
-			$.post('/admin/signInPost',{
-			    username: username,
-			    password: password
-			},function (res) {
-			    //TODO {status,message}
-			    if(res.status == 1){
-					alert("登录成功");
-				} else {
-					alert(res.message);
-				}
+	    $(document).ready(function () {
+            $('#submit').click(function () {
+                refreshTable();
             });
-        })
-    })(jQuery);
+            //删除
+			function delectOrder() {
+                $('#orderInfo button').click(function (event) {
+                    //console.log(event)
+                    var id = event.currentTarget.id;
+                    id = id.match(/(btnId-)([0-9]*)/)[2];
+                    id = parseInt(id);
+                    $.post('SOA/cancelOrder',{
+                        id: id,
+                    },function (res) {
+                        if(res.status == 1){
+                            alert("删除成功");
+                            refreshTable();
+						}
+						else if(res.status == 0) {
+                            alert(res.message);
+						}
+
+                    });
+                });
+            }
+
+            function refreshTable() {
+                $.post('/SOA/queryOrders',{
+                    sfzh: $('#sfzh').val(),
+                    name: $('#name').val(),
+                    phone: $('#phone').val()
+                },function (res) {
+                    if(res && res.length > 0){
+                        var tbodyHtml = '';
+                        $('.booking-form').hide();
+                        for(var i=0;i<res.length;i++){
+                            var info = res[i];
+                            var button = '<button id="btnId-'+ info.id +'">删除</button>'
+                            tbodyHtml += '<tr><td>' + i+1 + '</td><td>'+ info.name +'</td><td>'+ info.sfzh +'</td><td>'+ info.inDate +'</td><td>'+ info.type +'</td><td>'+ info.status +'</td><td>' + button +'</td></tr>';
+                        }
+                        $('#orderInfo tbody').html(tbodyHtml);
+                        $('#orderInfo').show();
+                        delectOrder();
+                    } else {
+                        alert('查询失败:' + res.message);
+                    }
+                });
+            }
+
+        });
+	})(jQuery);
 </script>
+</body>
 </html>

@@ -163,6 +163,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			    //TODO {status,message}
 			    if(res.status == 1){
 					alert("登录成功");
+					window.location.href = '/index';
 				} else {
 					alert(res.message);
 				}

@@ -168,8 +168,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<option>2019</option>
 							<option>2020</option>
 						</select>
-						<input id="submit" type="button" value="Submit">
-						<input type="reset" value="Reset">
+						<input id="submit" type="button" value="确认">
+						<input type="reset" value="重置">
 						<%--<input id="roomType" type="text" value="">--%>
 					</form>
 				</div>

@@ -1052,6 +1052,18 @@ select.arrival{
 	font-size: 1.5em;
 	color:#252525;
 }
+#orderInfo button{
+    font-family: 'Open Sans', sans-serif;
+    padding: 7px;
+    display: block;
+    width: 98%;
+    background: transparent;
+    outline: none;
+    color: red;
+    font-size: 1em;
+    border: 1px solid #2A2E33;
+    -webkit-appearance: none;
+}
 .LatestNews {
 	margin: 1em 0em 2em 0;
 }
