@@ -14,6 +14,15 @@ public class BaseController {
     @GetMapping("/signIn")
     public String getSignIn() {return "signIn";}
 
+    @GetMapping("/rooms")
+    public String getRooms() {return "rooms";}
+
+    @GetMapping("/details")
+    public String getDetails() {return "details";}
+
+    @GetMapping("/myOrder")
+    public String getMyOrder() {return "myOrder";}
+
     @GetMapping("/admin/{view}")
     public void getView2() {}
 

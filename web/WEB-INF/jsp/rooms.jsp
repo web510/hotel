@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE HTML>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE HTML>
 <html>
 <head>
-<title>登陆</title>
+<title>Rooms</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Motel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -51,9 +50,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div id="sb-search" class="sb-search">
 						<form>
 							<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
-							<input class="sb-search-submit" type="button" value="">
+							<input class="sb-search-submit" type="submit" value="">
 							<span class="sb-icon-search"> </span>
-						</form>
+							</form>
 					</div>
 				</div>
 					<div class="clearfix"> </div>
@@ -68,38 +67,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			</div>
 		</div>
-	</div>
+	</div>		
 		<!-- banner -->
-
-<div class="login-page">
+<!-- single -->
+	<div class="single">
 		<div class="container">
-			<div class="account_grid">
-				<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
-					<h3>NEW CUSTOMERS</h3>
-					<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-					<a class="acount-btn" href="register.html">Create an Account</a>
-			   </div>
-			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
-					<h3>REGISTERED CUSTOMERS</h3>
-					<p>If you have an account with us, please log in.</p>
-					<form>
-						<div>
-							<span>Email Address<label>*</label></span>
-							<input id="username" type="text">
-						</div>
-						<div>
-							<span>Password<label>*</label></span>
-							<input id="password" type="password">
-						</div>
-						<a class="forgot" href="#">Forgot Your Password?</a>
-						<input id="signIn" type="button" value="Sign In">
-					</form>
-			   </div>	
+			<div class="single-top">
+				<div class="col-md-6 single-left">
+					<a href="details"><img src="/front/images/14.jpg" class="img-responsive" alt=""></a>
+				</div>
+				<div class="col-md-6 single-right">
+					<h3><a href="details">Publishing software like Aldus</a></h3>
+					<p>The point of using Lorem Ipsum is that it has a <strong>more-or-less normal</strong> distribution of letters, as opposed to using 'Content here, content here'</p>
+					<p>when an unknown printer took a s that it has galley of type and scrambled it to make a type </p>
+					<h5>*The Booking detials for must be Ipsum is that it has.</h5>
+					<h6>• Our stylish hotel is ideally located</h6>
+					<div class="sinbt">
+						<a class="hvr-shutter-in-horizontal" href="details">Book Now</a>
+					</div>
+				</div>
 				<div class="clearfix"> </div>
 			</div>
-		</div>
+			<div class="single-top">
+				<div class="col-md-6 single-right">
+					<h3><a href="details">There are many variations</a></h3>
+					<p>The point of using Lorem Ipsum is that it has a <strong>more-or-less normal</strong> distribution of letters, as opposed to using 'Content here, content here'</p>
+					<p>when an unknown printer took a s that it has galley of type and scrambled it to make a type </p>
+					<h5>*The Booking detials for must be Ipsum is that it has.</h5>
+					<h6>• Our stylish hotel is ideally located</h6>
+					<div class="sinbt">
+						<a class="hvr-shutter-in-horizontal" href="details">Book Now</a>
+					</div>
+				</div>
+				<div class="col-md-6 single-left">
+					<a href="details"><img src="/front/images/15.jpg" class="img-responsive" alt=""></a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="single-top">
+				<div class="col-md-6 single-left">
+					<a href="details"><img src="/front/images/13.jpg" class="img-responsive" alt=""></a>
+				</div>
+				<div class="col-md-6 single-right">
+					<h3><a href="details">Lorem Ipsum is that it has</a></h3>
+					<p>The point of using Lorem Ipsum is that it has a <strong>more-or-less normal</strong> distribution of letters, as opposed to using 'Content here, content here'</p>
+					<p>when an unknown printer took a s that it has galley of type and scrambled it to make a type </p>
+					<h5>*The Booking detials for must be Ipsum is that it has.</h5>
+					<h6>• Our stylish hotel is ideally located</h6>
+					<div class="sinbt">
+						<a class="hvr-shutter-in-horizontal" href="details">Book Now</a>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		 </div>
 	</div>
-	<!-- footer -->
+<!-- registration -->
+<!-- footer -->
 	<div class="footer">
 		<div class="container">
 			<div class="col-md-2 deco">
@@ -150,24 +174,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	<!-- footer -->
 </body>
-
-<script>
-	(function ($) {
-	    $('#signIn').click(function () {
-	        var username = $('#username').val(),
-	            password = $('#password').val();
-			$.post('/admin/signInPost',{
-			    username: username,
-			    password: password
-			},function (res) {
-			    //TODO {status,message}
-			    if(res.status == 1){
-					alert("登录成功");
-				} else {
-					alert(res.message);
-				}
-            });
-        })
-    })(jQuery);
-</script>
 </html>

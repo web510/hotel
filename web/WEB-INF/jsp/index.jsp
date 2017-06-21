@@ -38,9 +38,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!--/.navbar-header-->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.html">主页</a></li>
-						<li><a href="rooms.jsp">房间预订</a></li>
-						<li><a href="contact.jsp">联系我们</a></li>
+						<li class="active"><a href="index">主页</a></li>
+						<li><a href="rooms">房间预订</a></li>
+						<li><a href="myOrder">我的订单</a></li>
+						<li><a href="contact">联系我们</a></li>
 						<li><a href="signIn">登录</a></li>
 					</ul>
 				</div>

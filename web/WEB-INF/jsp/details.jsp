@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE HTML>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE HTML><!DOCTYPE HTML>
 <html>
 <head>
-<title>登陆</title>
+<title>Details</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Motel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -53,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
 							<input class="sb-search-submit" type="button" value="">
 							<span class="sb-icon-search"> </span>
-						</form>
+							</form>
 					</div>
 				</div>
 					<div class="clearfix"> </div>
@@ -68,38 +67,119 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			</div>
 		</div>
-	</div>
+	</div>		
 		<!-- banner -->
-
-<div class="login-page">
+<!-- details -->
+	<div class="details">
 		<div class="container">
-			<div class="account_grid">
-				<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
-					<h3>NEW CUSTOMERS</h3>
-					<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-					<a class="acount-btn" href="register.html">Create an Account</a>
-			   </div>
-			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
-					<h3>REGISTERED CUSTOMERS</h3>
-					<p>If you have an account with us, please log in.</p>
-					<form>
-						<div>
-							<span>Email Address<label>*</label></span>
-							<input id="username" type="text">
-						</div>
-						<div>
-							<span>Password<label>*</label></span>
-							<input id="password" type="password">
-						</div>
-						<a class="forgot" href="#">Forgot Your Password?</a>
-						<input id="signIn" type="button" value="Sign In">
-					</form>
-			   </div>	
-				<div class="clearfix"> </div>
+			<div class="col-md-7 details-left">
+				<img src="/front/images/16.jpg" class="img-responsive" alt="">
 			</div>
-		</div>
+			<div class="col-md-5 details-right">
+				<span><strong>€ 250</strong> € 300 per guest</span>
+				<li>Book the service at the best price</li>
+				<li>Secure payment by credit card</li>
+				<li>No booking fee</li>
+				<p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and a type specimen book. It has the leap into electronic typesetting, It was popularised in the 1960s with the relesoftware like Aldus PageMaker including versions of Lorem Ipsum.</p>
+			</div>
+			<div class="clearfix"> </div>
+			<div class="details-top">
+				<h3>Lorem Ipsum has been the industry's standard dummy tex</h3>
+				<h5>Buy the online room booking, save 2 euro and skip the line!</h5>
+				<h6>Validity : from 1 January 2015 to 31 August 2015</h6>
+				<h4>Included</h4>
+				<li>Kids under 5: free</li>
+				<li>publishing packages and web .Many desktop publishing packages and web page editors </li>
+				<h4>Not included</h4>
+				<li> will uncover many web sites still in their infancy. Various versions have evolved over the years,</li>
+				<h4>Additional information</h4>
+				<p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+			</div>
+			<div class="booking-form">
+				 <div class="col-md-6">			 
+					<form>
+						<h5>身份证号</h5>
+						<input id="sfzh" type="text" value="">
+						<h5>姓名</h5>
+						<input id="name" type="text" value="">
+						<h5>电话</h5>
+						<input id="phone" type="text" value="">
+						<%--<h5>入住日期</h5>
+						<input id="inDate" type="text" value="" class="time">--%>
+						<h5>房型</h5>
+						<select id="roomType" name="roomType" class="arrival">
+							<option>标准间</option>
+							<option>大床房</option>
+							<option>总统套房</option>
+						</select>
+
+						<h5 id="arrival">入住日期</h5>
+						<select id="inDay" class="arrival">
+							<option>01</option>
+							<option>02</option>
+							<option>03</option>
+							<option>04</option>
+							<option>05</option>
+							<option>06</option>
+							<option>08</option>
+							<option>09</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+							<option>21</option>
+							<option>22</option>
+							<option>23</option>
+							<option>24</option>
+							<option>25</option>
+							<option>26</option>
+							<option>27</option>
+							<option>28</option>
+							<option>29</option>
+							<option>30</option>
+							<option>31</option>
+						</select>
+						<select id="inMon" class="arrival">
+							<option>01</option>
+							<option>02</option>
+							<option>03</option>
+							<option>04</option>
+							<option>05</option>
+							<option>06</option>
+							<option>07</option>
+							<option>08</option>
+							<option>09</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select>
+						<select id="inYear" class="arrival">
+							<option>2015</option>
+							<option>2016</option>
+							<option>2017</option>
+							<option>2018</option>
+							<option>2019</option>
+							<option>2020</option>
+						</select>
+						<input id="submit" type="button" value="Submit">
+						<input type="reset" value="Reset">
+						<%--<input id="roomType" type="text" value="">--%>
+					</form>
+				</div>
+			 </div>
+
+			</div>
+		 </div>
 	</div>
-	<!-- footer -->
+<!-- details -->
+<!-- footer -->
 	<div class="footer">
 		<div class="container">
 			<div class="col-md-2 deco">
@@ -149,25 +229,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	<!-- footer -->
-</body>
 
 <script>
 	(function ($) {
-	    $('#signIn').click(function () {
-	        var username = $('#username').val(),
-	            password = $('#password').val();
-			$.post('/admin/signInPost',{
-			    username: username,
-			    password: password
+		$('#submit').click(function () {
+            var inDate = $('#inYear').val() + '-' +
+                    $('#inMon').val() + '-' +
+                    $('#inDay').val(),
+				roomType = $('#roomType').val();
+			$.post('/SOA/orderRoom',{
+			    sfzh: $('#sfzh').val(),
+				name: $('#name').val(),
+				inDate: inDate,
+				roomType: roomType,
+				phone: $('#phone').val()
 			},function (res) {
-			    //TODO {status,message}
 			    if(res.status == 1){
-					alert("登录成功");
+			        alert('预定成功');
 				} else {
-					alert(res.message);
+			        alert('预定失败:' + res.message);
 				}
             });
-        })
-    })(jQuery);
+        });
+	})(jQuery);
 </script>
+</body>
 </html>

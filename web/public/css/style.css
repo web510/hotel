@@ -233,7 +233,7 @@ nav.navbar.navbar-default {
     -o-transition: 0.3s;
     -webkit-transition: 0.3s;
     transition: 0.3s;
-    background-color: #ff;
+    background-color: #fff;
     border: none;
 	outline:none;
     font-size: 14px;
@@ -245,7 +245,7 @@ nav.navbar.navbar-default {
 select#country {
     color:#9C9C9C;
 }
-.submit_button input[type="submit"] {
+.submit_button input[type="submit"],.submit_button input[type="button"] {
     color: #fff;
     text-transform: uppercase;
     font-size: 1em;
@@ -256,7 +256,7 @@ select#country {
     padding: 9px 0px;
     outline: none;
 }
-.submit_button input[type="submit"]:hover{
+.submit_button input[type="submit"]:hover, .submit_button input[type="button"]:hover{
 	background:#6cbc35;
 }
 input#datepicker, input#datepicker1 {
@@ -1018,7 +1018,7 @@ select.arrival{
 .form-control{
 	width:10%;
 }
-.booking-form input[type="submit"],.booking-form input[type="reset"] {
+.booking-form input[type="submit"],.booking-form input[type="reset"],.booking-form input[type="button"] {
 	margin-top: 25px;
 	font-family: 'Open Sans', sans-serif;
 	cursor: pointer;
@@ -1039,7 +1039,7 @@ select.arrival{
 	-moz-border-radius: 2px;
 	-o-border-radius: 2px;
 }
-.booking-form input[type="submit"]:hover,.booking-form input[type="reset"]:hover  {
+.booking-form input[type="submit"]:hover,.booking-form input[type="reset"]:hover,.booking-form input[type="button"]:hover  {
 	background: #553A99;
 	border: 1px solid #553A99;
 }
