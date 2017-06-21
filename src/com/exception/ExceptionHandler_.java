@@ -32,6 +32,7 @@ public class ExceptionHandler_ {
 			HttpServletResponse response,
 			Exception e) {
 		if(request.getMethod().equals("POST")) {
+			e.printStackTrace();
             if(null != request.getParameter("pk")) { //判断请求是否存在pk参数，如果存在，则说明是table修改
                 response.setStatus(500);
                 return e.getMessage();

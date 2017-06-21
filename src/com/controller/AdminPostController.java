@@ -5,10 +5,10 @@ import com.dao.RoomNumberDao;
 import com.entity.Admin;
 import com.entity.Order_;
 import com.entity.RoomNumber;
+import com.exception.PostException;
 import com.service.AdminService;
 import com.util.JsonUtils;
-import net.sf.json.JSON;
-import net.sf.json.JSONObject;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +36,19 @@ public class AdminPostController {
 	public String inMoney(int order_id) {
 		orderDao.inMoney(order_id);
 		return JsonUtils.writeStatus(1,"缴费成功");
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/checkIn",produces = "application/json; charset=utf-8")
+	//入住房间
+	public String checkIn(int order_id, int roomNumberId) {
+		Order_ order = orderDao.find(order_id);
+		if(order.getStatus().equals("已预订")) throw new PostException("订单还没有缴费");
+		else if(order.getStatus().equals("已入住")) throw new PostException("错误，请勿重复check in");
+		RoomNumber roomNumer = roomNumberDao.find(roomNumberId);
+		if(roomNumer.getRoom().getId() != order.getRoom().getId()) throw new PostException("房间类型与订单房间类型不匹配");
+		orderDao.checkIn(order_id,roomNumberId);
+		return JsonUtils.writeStatus(1,"成功入住！");
 	}
 
 	@ResponseBody
