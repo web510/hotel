@@ -1,14 +1,10 @@
 package com.dao;
 
-import com.entity.Admin;
-import com.entity.Order;
 import com.entity.Room;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.sql.Date;
 
 
 @Repository

@@ -2,6 +2,7 @@ package com.controller;
 
 import com.dao.OrderDao;
 import com.dao.RoomDao;
+import com.entity.Order_;
 import com.entity.Room;
 import com.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,10 @@ public class SOAController {
     @ResponseBody
     @RequestMapping(value="/orderRoom",produces = "application/json; charset=utf-8")
     //订房
-    public String orderRoom(String sfzh, String name, Date inDate, Date outDate, String roomType,String phone) {
-        //Room room = roomDao.find(roomType);
-        //orderDao.insert(inDate,outDate,name,sfzh,phone,room);
-        return JsonUtils.writeStatus(1,"");
+    public String orderRoom(String sfzh, String name, Date inDate, String roomType,String phone) {
+        Room room = roomDao.find(roomType);
+        Order_ order = orderDao.insert(inDate,name,sfzh,phone,room);
+        return JsonUtils.writeStatus(1,String.valueOf(order.getId()));
     }
     //查询房间剩余信息
     @ResponseBody

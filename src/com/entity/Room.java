@@ -13,7 +13,7 @@ public class Room {
     @Column(updatable = false)
     private int count;
     @OneToMany(mappedBy = "room")
-    private Set<Order> orders;
+    private Set<Order_> orders;
 
     public int getId() {
         return id;
@@ -39,11 +39,11 @@ public class Room {
         this.count = count;
     }
 
-    public Set<Order> getOrders() {
+    public Set<Order_> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(Set<Order_> orders) {
         this.orders = orders;
     }
 }

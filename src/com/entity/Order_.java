@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Order {
+public class Order_ {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -12,7 +12,6 @@ public class Order {
     private String sfzh;//身份证号
     private String phone;//电话号码
     private Date inDate;//入住时间
-    private Date outDate;//离开时间
     @ManyToOne
     private Room room;//预定的房间号
 
@@ -54,14 +53,6 @@ public class Order {
 
     public void setInDate(Date inDate) {
         this.inDate = inDate;
-    }
-
-    public Date getOutDate() {
-        return outDate;
-    }
-
-    public void setOutDate(Date outDate) {
-        this.outDate = outDate;
     }
 
     public Room getRoom() {
