@@ -32,6 +32,24 @@ public class AdminPostController {
 	private OrderDao orderDao;
 
 	@ResponseBody
+	@RequestMapping(value="/ordersListNotInMoney",produces = "application/json; charset=utf-8")
+	public String ordersListNotInMoney() {
+		List<Order_> list = orderDao.ordersListNotinMoney();
+		List<JSONObject> res = new ArrayList<>();
+		for(Order_ order : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("id",order.getId());
+			obj.put("inDate",order.getInDate());
+			obj.put("name",order.getName());
+			obj.put("type",order.getRoom().getType());
+			obj.put("sfzh",order.getSfzh());
+			obj.put("status",order.getStatus());
+			res.add(obj);
+		}
+		return res.toString();
+	}
+
+	@ResponseBody
 	@RequestMapping(value="/inMoney",produces = "application/json; charset=utf-8")
 	public String inMoney(int order_id) {
 		orderDao.inMoney(order_id);

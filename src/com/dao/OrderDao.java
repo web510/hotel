@@ -75,4 +75,11 @@ public class OrderDao extends GenericDao<Order_> {
 	    order.setStatus("已入住");
         flush();
     }
+
+    public List<Order_> ordersListNotinMoney() {
+        String jpql = "FROM Order_ u WHERE u.status='已预订'";
+        Query query = getEntityManager().createQuery(jpql);
+        List<Order_> list = query.getResultList();
+        return list;
+    }
 }
