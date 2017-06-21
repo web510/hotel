@@ -14,6 +14,8 @@ import java.util.List;
 public class AdminDao extends GenericDao<Admin> {
     @Autowired
     private RoomDao roomDao;
+    @Autowired
+    private RoomNumberDao roomNumberDao;
 
 	public Admin find(String userName, String password) {
 		String jpql = "FROM Admin u WHERE u.userName=:userName AND u.password=:password";
@@ -35,6 +37,7 @@ public class AdminDao extends GenericDao<Admin> {
                     user = insertUser(admin);
                 }
                 roomDao.insertJustOnce();
+                roomNumberDao.insertJustOnce();
             }
 		}
 		return user;

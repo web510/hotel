@@ -14,6 +14,8 @@ public class Room {
     private int count;
     @OneToMany(mappedBy = "room")
     private Set<Order_> orders;
+    @OneToMany(mappedBy = "room")
+    private Set<RoomNumber> roomNumbers;
 
     public int getId() {
         return id;

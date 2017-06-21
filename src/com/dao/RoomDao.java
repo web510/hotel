@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.Room;
+import com.entity.RoomNumber;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,11 +12,12 @@ import javax.persistence.Query;
 public class RoomDao extends GenericDao<Room> {
 	@Transactional
 	public void insertJustOnce() {
-		Room room = new Room();
+		Room room;
+        room = new Room();
 		room.setType("总统套房");
 		room.setCount(2);
         persist(room);
-		Room room2 = new Room();
+        Room room2 = new Room();
 		room2.setType("标准间");
 		room2.setCount(10);
 		persist(room2);

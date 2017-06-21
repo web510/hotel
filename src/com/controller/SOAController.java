@@ -42,7 +42,9 @@ public class SOAController {
     @ResponseBody
     @RequestMapping(value="/cancelOrder",produces = "application/json; charset=utf-8")
     public String cancelOrder(int id) {
-        if(null==orderDao.find(id)) throw new PostException("没有该预订记录");
+        Order_ order = orderDao.find(id);
+        if(null==order) throw new PostException("没有该预订记录");
+        else if(!order.getStatus().equals("已预订")) throw new PostException("该订单"+order.getStatus());
         orderDao.cancelOrder(id);
         return JsonUtils.writeStatus(1,"预订已取消");
     }
@@ -59,6 +61,7 @@ public class SOAController {
             obj.put("name",order.getName());
             obj.put("type",order.getRoom().getType());
             obj.put("sfzh",order.getSfzh());
+            obj.put("status",order.getStatus());
             res.add(obj);
         }
         return res.toString();

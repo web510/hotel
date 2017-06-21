@@ -2,6 +2,7 @@ package com.dao;
 
 import com.entity.Order_;
 import com.entity.Room;
+import com.exception.PostException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class OrderDao extends GenericDao<Order_> {
 	    order.setSfzh(sfzh);
 	    order.setPhone(phone);
 	    order.setRoom(room);
+	    order.setStatus("已预订");
         persist(order);
         refresh(order);
         return order;
@@ -56,5 +58,14 @@ public class OrderDao extends GenericDao<Order_> {
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id", id);
         query.executeUpdate();
+    }
+
+    public void inMoney(int order_id) {
+	    Order_ order = find(order_id);
+	    if(order.getStatus().equals("已预订")) {
+            order.setStatus("已缴费");
+            persist(order);
+        }
+	    else throw new PostException("该订单已缴过费！");
     }
 }

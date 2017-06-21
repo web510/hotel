@@ -127,31 +127,15 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-user"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-book"></i> 预订信息 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="userAdd">添加用户</a></li>
-                                    <li><a href="userEdit">查看／编辑用户</a></li>
+                                    <li><a href="userAdd">房间预订</a></li>
+                                    <li><a href="userEdit">订单缴费</a></li>
+                                    <li><a href="userEdit">房间分配</a></li>
                                 </ul>
                             </li>
-
-                            <li><a><i class="fa fa-book"></i> 监考管理 <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="invigilationAdd">添加监考</a></li>
-                                    <li><a href="invigilationEdit">查看／编辑监考</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a><i class="fa fa-tasks"></i> 任务管理 <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="taskAdd">添加任务</a></li>
-                                    <li><a href="taskEdit">查看/编辑任务</a></li>
-                                </ul>
-                            </li>
-
-
                         </ul>
                     </div>
-
                 </div>
                 <!-- /sidebar menu -->
 
