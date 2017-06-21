@@ -67,6 +67,20 @@ public class UserControllerLoginTest {
         session = (MockHttpSession) result.getRequest().getSession();
     }
 
+	public void cancelOrder() throws Exception {
+		RequestBuilder builder = MockMvcRequestBuilders
+				.post("/SOA/cancelOrder")
+				.param("id", "2")
+//                .param("title","教授")
+//                .param("introduction","我就是张猛治，哈哈")
+//                .param("role","teacher")
+//                .param("phone","15545016598")
+				.session(session);
+		ResultActions resultActions = mockMvc.perform(builder).andDo(MockMvcResultHandlers.print());
+		MvcResult result = resultActions.andReturn();
+		session = (MockHttpSession) result.getRequest().getSession();
+	}
+
 	public void getUsersList() throws Exception {
 //	    {"total":2,"rows":[{"role":"teacher","id":2,"userName":"张猛治4","title":"教授","introduction":"我就是张猛治，哈哈"},{"role":"teacher","phone":"15545016598","id":3,"userName":"张猛治5","title":"教授","introduction":"我就是张猛治，哈哈"}]}
 		RequestBuilder builder = MockMvcRequestBuilders
