@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.Admin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,9 @@ import java.util.List;
 
 @Repository
 public class AdminDao extends GenericDao<Admin> {
+    @Autowired
+    private RoomDao roomDao;
+
 	public Admin find(String userName, String password) {
 		String jpql = "FROM Admin u WHERE u.userName=:userName AND u.password=:password";
 		Query query = getEntityManager().createQuery(jpql);
@@ -30,6 +34,7 @@ public class AdminDao extends GenericDao<Admin> {
                     admin.setEmail("");
                     user = insertUser(admin);
                 }
+                roomDao.insertJustOnce();
             }
 		}
 		return user;

@@ -8,8 +8,10 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true, nullable = false)
     private String type;
-    private String count;
+    @Column(updatable = false)
+    private int count;
     @OneToMany(mappedBy = "room")
     private Set<Order> orders;
 
@@ -29,11 +31,11 @@ public class Room {
         this.type = type;
     }
 
-    public String getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
