@@ -107,7 +107,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><span>&nbsp;&nbsp;软件工程管理系统</span></a>
+                    <a href="index.html" class="site_title"><span>&nbsp;&nbsp;酒店管理系统</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -127,11 +127,11 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-book"></i> 预订信息 <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-book"></i> 订单管理 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="userAdd">房间预订</a></li>
-                                    <li><a href="userEdit">订单缴费</a></li>
-                                    <li><a href="userEdit">房间分配</a></li>
+                                    <li><a href="moneyIn">订单缴费</a></li>
+                                    <li><a href="roomIn">房间入住</a></li>
+                                    <li><a href="roomAssign">房间分配</a></li>
                                 </ul>
                             </li>
                         </ul>

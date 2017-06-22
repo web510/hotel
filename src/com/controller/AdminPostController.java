@@ -44,6 +44,7 @@ public class AdminPostController {
 			obj.put("type",order.getRoom().getType());
 			obj.put("sfzh",order.getSfzh());
 			obj.put("status",order.getStatus());
+			obj.put("moneyIn","<button id=\"moneyIn-"+ order.getId() +"\">缴费</button>");
 			res.add(obj);
 		}
 		return res.toString();

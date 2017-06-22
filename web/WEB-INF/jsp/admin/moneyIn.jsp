@@ -8,13 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="head.jsp"/>
 
-
-
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>用户编辑</h3>
+                <h3>订单缴费</h3>
             </div>
         </div>
 
@@ -24,7 +22,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>查看/编辑用户</h2>
+                        <h2>查看/编辑订单</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -37,7 +35,6 @@
     </div>
 </div>
 
-
 <script>
     function userAdminEdit(){
         $('#userAdmiEdit-usersList').bootstrapTable('refresh');
@@ -45,10 +42,11 @@
     $($('#userAdmiEdit-usersList').bootstrapTable({
         afterLoad: function() {
             $.fn.editable.defaults.mode = 'popup';
+            moneyInClick();
         },
         method: 'get',
         idField: 'id',
-        url:'post/usersListPost',
+        url:'/admin/ordersListNotInMoney',
         classes: 'table table-striped table-condensed table-hover',
         columns: [{
             field: 'id',
@@ -57,84 +55,92 @@
             valign: 'middle',
             visible: false
         }, {
-            field: 'userName',
+            field: 'name',
             title: '姓名',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit"
         }, {
-            field: 'title',
-            title: '职称',
+            field: 'sfzh',
+            title: '身份证',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit",
             width: '15%'
         }, {
-            field: 'phone',
-            title: '电话',
+            field: 'inDate',
+            title: '入住日期',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit"
         },{
-            field: 'role',
-            title: '用户类型',
+            field: 'type',
+            title: '房型',
             align: 'center',
             valign: 'middle',
             width: '20%'
         }, {
-            field: 'introduction',
-            title: '简介',
+            field: 'status',
+            title: '状态',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit",
             editableType: "textarea"
         }, {
-            field: 'delete',
-            title: '删除用户',
+            field: 'moneyIn',
+            title: '缴费',
             align: 'center',
             valign: 'middle',
-            width: '5%'
+            width: '15%'
         }],
         pagination: true,
-        sidePagination: 'server',
+        sidePagination: 'client',
         pageSize: 20
     }));
 
-    function userAdminEdit_delete(userId) {
-        var yes = function() {
-            $.post('post/userDelete', {
-                userId : userId
-            }, function (data) {
-                if(data.status == 0) {
-                    $('#errorAlert-content').html("删除失败："+data.message);
-                    $('#errorAlert').modal('show');
+    function moneyInClick() {
+        $('#userAdmiEdit-usersList button').click(function (event) {
+            var id = event.currentTarget.id;
+            id = id.match(/(moneyIn-)([0-9]*)/)[2];
+            id = parseInt(id);
+            $.post('/admin/inMoney',{
+                id: id,
+            },function (res) {
+                if(res.status == 1){
+                    alert("缴费成功");
                 }
-                else userAdminEdit();
+                else {
+                    alert(res.message);
+                    console.log(res.message);
+                }
             });
-        };
-        $('#confirmBox-yes').unbind();
-        $('#confirmBox-no').unbind();
-        $('#confirmBox-yes').click(yes);
-        $('#confirmBox-title').html("确认删除？");
-        $('#confirmBox-content').html("是否删除该用户？");
-        $('#confirmBox').modal('show');
-    }
-
-    function userAdminEdit_toggleRole(userId) {
-        $.post('post/userToggleRole', {
-            userId : userId
-        }, function (data) {
-            if(data.status == 1) userAdminEdit();
-            else {
-                $('#errorAlert-content').html("出现异常");
-                $('#errorAlert').modal('show');
-            }
         });
     }
+
+
+//    function moneyIn(orderId) {
+//        var yes = function() {
+//            $.post('/admin/inMoney', {
+//                userId : userId
+//            }, function (data) {
+//                if(data.status == 0) {
+//                    $('#errorAlert-content').html("删除失败："+data.message);
+//                    $('#errorAlert').modal('show');
+//                }
+//                else userAdminEdit();
+//            });
+//        };
+//        $('#confirmBox-yes').unbind();
+//        $('#confirmBox-no').unbind();
+//        $('#confirmBox-yes').click(yes);
+//        $('#confirmBox-title').html("确认删除？");
+//        $('#confirmBox-content').html("是否删除该用户？");
+//        $('#confirmBox').modal('show');
+//    }
 
 </script>
 <jsp:include page="footer.jsp"/>
