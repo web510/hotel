@@ -108,14 +108,14 @@
             id = id.match(/(moneyIn-)([0-9]*)/)[2];
             id = parseInt(id);
             $.post('/admin/inMoney',{
-                id: id,
+                order_id: id,
             },function (res) {
                 if(res.status == 1){
                     alert("缴费成功");
+                    $('#userAdmiEdit-usersList').bootstrapTable('refresh');
                 }
                 else {
                     alert(res.message);
-                    console.log(res.message);
                 }
             });
         });
