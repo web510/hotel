@@ -107,17 +107,24 @@
             var id = event.currentTarget.id;
             id = id.match(/(moneyIn-)([0-9]*)/)[2];
             id = parseInt(id);
-            $.post('/admin/inMoney',{
-                order_id: id,
-            },function (res) {
-                if(res.status == 1){
-                    alert("缴费成功");
-                    $('#userAdmiEdit-usersList').bootstrapTable('refresh');
-                }
-                else {
-                    alert(res.message);
-                }
-            });
+            yes = function(){
+                $.post('/admin/inMoney',{
+                    order_id: id,
+                },function (res) {
+                    if(res.status == 1){
+                        $('#userAdmiEdit-usersList').bootstrapTable('refresh');
+                    }
+                    else {
+                        alert(res.message);
+                    }
+                });
+            }
+            $('#confirmBox-yes').unbind();
+            $('#confirmBox-no').unbind();
+            $('#confirmBox-yes').click(yes);
+            $('#confirmBox-title').html("缴费");
+            $('#confirmBox-content').html("是否缴费？");
+            $('#confirmBox').modal('show');
         });
     }
 

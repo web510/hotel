@@ -82,4 +82,11 @@ public class OrderDao extends GenericDao<Order_> {
         List<Order_> list = query.getResultList();
         return list;
     }
+
+    public List<Order_> ordersListNotInRoom() {
+        String jpql = "FROM Order_ u WHERE u.status='已缴费'";
+        Query query = getEntityManager().createQuery(jpql);
+        List<Order_> list = query.getResultList();
+        return list;
+    }
 }

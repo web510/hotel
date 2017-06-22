@@ -44,7 +44,7 @@ public class AdminPostController {
 			obj.put("type",order.getRoom().getType());
 			obj.put("sfzh",order.getSfzh());
 			obj.put("status",order.getStatus());
-			obj.put("moneyIn","<button id=\"moneyIn-"+ order.getId() +"\">缴费</button>");
+			obj.put("moneyIn","<button id=\"moneyIn-"+ order.getId() +" type=\"button\" class=\"btn btn-primary\" \">缴费</button>");
 			res.add(obj);
 		}
 		return res.toString();
@@ -55,6 +55,25 @@ public class AdminPostController {
 	public String inMoney(int order_id) {
 		orderDao.inMoney(order_id);
 		return JsonUtils.writeStatus(1,"缴费成功");
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/ordersListNotInRoom",produces = "application/json; charset=utf-8")
+	public String ordersListNotInRoom() {
+		List<Order_> list = orderDao.ordersListNotInRoom();
+		List<JSONObject> res = new ArrayList<>();
+		for(Order_ order : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("id",order.getId());
+			obj.put("inDate",order.getInDate());
+			obj.put("name",order.getName());
+			obj.put("type",order.getRoom().getType());
+			obj.put("sfzh",order.getSfzh());
+			obj.put("status",order.getStatus());
+			obj.put("roomIn","<button id=\"roomIn-"+ order.getId() +" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" \">入住</button>");
+			res.add(obj);
+		}
+		return res.toString();
 	}
 
 	@ResponseBody

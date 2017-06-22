@@ -131,7 +131,7 @@
                                 <ul class="nav child_menu">
                                     <li><a href="moneyIn">订单缴费</a></li>
                                     <li><a href="roomIn">房间入住</a></li>
-                                    <li><a href="roomAssign">房间分配</a></li>
+                                    <%--<li><a href="roomAssign">房间分配</a></li>--%>
                                 </ul>
                             </li>
                         </ul>

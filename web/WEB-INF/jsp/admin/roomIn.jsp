@@ -6,8 +6,31 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    #roomRadios input{
+        margin:0 30px;
+    }
+</style>
 <jsp:include page="head.jsp"/>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">入住</h4>
+            </div>
+            <div class="modal-body" id="roomRadios">
+                <%--<input type="radio" />--%>
+            </div>
+            <div class="modal-footer">
+                <button id="roomOk" type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="right_col" role="main">
@@ -45,10 +68,11 @@
     $($('#userAdmiEdit-usersList').bootstrapTable({
         afterLoad: function() {
             $.fn.editable.defaults.mode = 'popup';
+            roomInClick();
         },
-        method: 'post',
+        method: 'get',
         idField: 'id',
-        url:'/admin/checkIn',
+        url:'/admin/ordersListNotInRoom',
         classes: 'table table-striped table-condensed table-hover',
         columns: [{
             field: 'id',
@@ -57,82 +81,82 @@
             valign: 'middle',
             visible: false
         }, {
-            field: 'userName',
+            field: 'name',
             title: '姓名',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit"
         }, {
-            field: 'title',
-            title: '职称',
+            field: 'sfzh',
+            title: '身份证',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit",
             width: '15%'
         }, {
-            field: 'phone',
-            title: '电话',
+            field: 'inDate',
+            title: '入住日期',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit"
         },{
-            field: 'role',
-            title: '用户类型',
+            field: 'type',
+            title: '房型',
             align: 'center',
             valign: 'middle',
             width: '20%'
         }, {
-            field: 'introduction',
-            title: '简介',
+            field: 'status',
+            title: '状态',
             align: 'center',
             valign: 'middle',
-            editable:true,
+            editable:false,
             editableUrl: "post/userAdminEdit",
             editableType: "textarea"
         }, {
-            field: 'delete',
-            title: '删除用户',
+            field: 'roomIn',
+            title: '选房',
             align: 'center',
             valign: 'middle',
-            width: '5%'
+            width: '15%'
         }],
         pagination: true,
-        sidePagination: 'server',
+        sidePagination: 'client',
         pageSize: 20
     }));
 
-    function userAdminEdit_delete(userId) {
-        var yes = function() {
-            $.post('post/userDelete', {
-                userId : userId
-            }, function (data) {
-                if(data.status == 0) {
-                    $('#errorAlert-content').html("删除失败："+data.message);
-                    $('#errorAlert').modal('show');
+    function roomInClick() {
+        $('#userAdmiEdit-usersList button').click(function (event) {
+            var id = event.currentTarget.id;
+            id = id.match(/(roomIn-)([0-9]*)/)[2];
+            id = parseInt(id);
+            $.post('/admin/roomNumberListCanSelect',{
+                "order_id": id
+            },function (roomList) {
+                var radiosHtml = '';
+                for(var i=0; i<roomList.length; i++){
+                    radiosHtml += '<label><input type="radio" name="roomIn" value="' +roomList[i].id+ '"/>'+ roomList[i].roomNumber +'</label>';
                 }
-                else userAdminEdit();
+                $('#roomRadios').html(radiosHtml);
             });
-        };
-        $('#confirmBox-yes').unbind();
-        $('#confirmBox-no').unbind();
-        $('#confirmBox-yes').click(yes);
-        $('#confirmBox-title').html("确认删除？");
-        $('#confirmBox-content').html("是否删除该用户？");
-        $('#confirmBox').modal('show');
-    }
-
-    function userAdminEdit_toggleRole(userId) {
-        $.post('post/userToggleRole', {
-            userId : userId
-        }, function (data) {
-            if(data.status == 1) userAdminEdit();
-            else {
-                $('#errorAlert-content').html("出现异常");
-                $('#errorAlert').modal('show');
+            yes = function(){
+                var okId = $("input[name='roomIn']:checked").val();
+                $.post('/admin/checkIn',{
+                    order_id: id,
+                    roomNumberId: okId
+                },function (res) {
+                    if(res.status == 1){
+                        $('#userAdmiEdit-usersList').bootstrapTable('refresh');
+                    }
+                    else {
+                        alert(res.message);
+                    }
+                });
             }
+            $('#roomOk').click(yes);
         });
     }
 
